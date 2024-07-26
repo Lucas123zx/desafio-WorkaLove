@@ -1,0 +1,187 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 2,
+    "pending": 0,
+    "failures": 2,
+    "start": "2024-07-25T19:33:12.426Z",
+    "end": "2024-07-25T19:33:14.997Z",
+    "duration": 2571,
+    "testsRegistered": 4,
+    "passPercent": 50,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "407b8144-f97b-47b6-b126-2e3bb7eefda4",
+      "title": "",
+      "fullFile": "C:\\Projetos\\desafioWorkaLove\\tests\\books.js",
+      "file": "\\tests\\books.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+          "title": "Recurso Book",
+          "fullFile": "C:\\Projetos\\desafioWorkaLove\\tests\\books.js",
+          "file": "\\tests\\books.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook: Cria um livro in \"Recurso Book\"",
+              "fullTitle": "Recurso Book \"before all\" hook: Cria um livro in \"Recurso Book\"",
+              "timedOut": false,
+              "duration": 1139,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await spec()\n  .post(urlBook)\n  .withHeaders('Content-Type', 'application/json')\n  .withBody(livro);",
+              "err": {},
+              "uuid": "3f1f8a2b-5607-4a37-a87a-2364fac5bd23",
+              "parentUUID": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Recuperar todos os livros com sucesso",
+              "fullTitle": "Recurso Book Recuperar todos os livros com sucesso",
+              "timedOut": false,
+              "duration": 708,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let { json, statusCode, statusMessage } = await spec()\n  .get(urlBook);\nconst totalBooks = json.length;\nexpect(statusCode).to.be.eql(200);\nexpect(statusMessage).to.be.eql('OK');\nexpect(json).to.be.an('array').that.is.not.empty;\nexpect(totalBooks).to.be.above(0);\n/// Valida se o array é maio que 0 e se json retornar o tipo de dado array que não é vazio",
+              "err": {},
+              "uuid": "997f8b03-d1d8-47c8-b9c1-ef8f132751ab",
+              "parentUUID": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cria um livro com sucesso",
+              "fullTitle": "Recurso Book Cria um livro com sucesso",
+              "timedOut": false,
+              "duration": 241,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let { json, statusCode, statusMessage } = await spec()\n  .post(urlBook)\n  .withHeaders('Content-Type', 'application/json')\n  .withBody(livro);\nexpect(statusCode).to.be.eql(200);\nexpect(statusMessage).to.be.eql('OK');\nconsole.log(json);\nconsole.log(livro);\nexpect(json).to.be.eql(livro);\n///  Validar se o json obtido da api é identico ao body informado",
+              "err": {},
+              "uuid": "f1ae2105-efe0-4889-909a-7e523baf035a",
+              "parentUUID": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cria um livro sem informar titulo",
+              "fullTitle": "Recurso Book Cria um livro sem informar titulo",
+              "timedOut": false,
+              "duration": 239,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "livro.title = \"\";\nlet { json, statusCode, statusMessage } = await spec()\n  .post(urlBook)\n  .withHeaders('Content-Type', 'application/json')\n  .withBody(livro);\nexpect(statusCode).to.be.eql(200);\nexpect(json.title).to.be.empty;\nconsole.log(json);\nconsole.log(livro);\nexpect(statusMessage).to.be.eql('OK')\nexpect(json).to.be.equals(livro);\n///  Validar se o json obtido da api é identico ao body informado",
+              "err": {
+                "message": "AssertionError: expected { id: 469, title: '', …(4) } to equal { id: 469, title: '', …(4) }",
+                "estack": "AssertionError: expected { id: 469, title: '', …(4) } to equal { id: 469, title: '', …(4) }\n    at Context.<anonymous> (tests\\books.js:68:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": ""
+              },
+              "uuid": "7bc110e7-746a-4868-8d9e-0a1589f06f52",
+              "parentUUID": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Cria um livro sem informar descrição",
+              "fullTitle": "Recurso Book Cria um livro sem informar descrição",
+              "timedOut": false,
+              "duration": 235,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "livro.description = \"\";\nlet { json, statusCode, statusMessage } = await spec()\n  .post(urlBook)\n  .withHeaders('Content-Type', 'application/json')\n  .withBody(livro);\nexpect(statusCode).to.be.eql(200);\nexpect(json.description).to.be.empty;\nexpect(statusMessage).to.be.eql('OK')\nexpect(json).to.be.equals(livro);\n///  Validar se o json obtido da api é identico ao body informado",
+              "err": {
+                "message": "AssertionError: expected { id: 469, title: '', …(4) } to equal { id: 469, title: '', …(4) }",
+                "estack": "AssertionError: expected { id: 469, title: '', …(4) } to equal { id: 469, title: '', …(4) }\n    at Context.<anonymous> (tests\\books.js:82:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)",
+                "diff": ""
+              },
+              "uuid": "c15f950c-d253-4315-a536-a50810b6dc65",
+              "parentUUID": "a1dc80d3-9805-4a43-a844-bbc7d3b4e68a",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "997f8b03-d1d8-47c8-b9c1-ef8f132751ab",
+            "f1ae2105-efe0-4889-909a-7e523baf035a"
+          ],
+          "failures": [
+            "7bc110e7-746a-4868-8d9e-0a1589f06f52",
+            "c15f950c-d253-4315-a536-a50810b6dc65"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 1423,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 5000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 5000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "10.7.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "report"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
