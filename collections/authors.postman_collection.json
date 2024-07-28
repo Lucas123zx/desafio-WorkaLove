@@ -1,0 +1,113 @@
+{
+	"info": {
+		"_postman_id": "268dd840-2d3d-4b0a-a357-f03f7c62f264",
+		"name": "authors",
+		"description": "# Plano de Teste\n\n###### **Data : 27/07/2024**\n\n###### **Versão: V1**\n\n###### **Autor: Lucas**\n\nDesrição: Este documento descreve os testes Manuais, realizados para verificar a funcionalidade da API. O objetivo é garantir que os endpoints Authors funcionem conforme o esperado e que os dados sejam manipulados corretamente.\n\nCenários de Testes:  \nCT01 - Obter lista de autores com sucesso;  \nCT02 - Obter livros por autor com sucesso;  \nCT03 - Obter livros por autor não encontrado;",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35029765"
+	},
+	"item": [
+		{
+			"name": "retornar_lista_de_autores_sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Authors",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors"
+					]
+				},
+				"description": "Pré-requisitos: Ter criado um Autor.\n\n1. fazer request abaixo:\n    \n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Authors](https://fakerestapi.azurewebsites.net/api/v1/Authors)\n    \n\nResultado Esperado:  \nResposta: Retornar todos os autores cadastrados.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Retornou todos os autores cadastrados.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/77a7fdd2-8ba8-4b4b-ae3f-3abd118044c3/aW1hZ2UucG5n\" alt=\"\" height=\"1079\" width=\"2559\">"
+			},
+			"response": []
+		},
+		{
+			"name": "retornar_livros_por_autor_sucesso",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Authors/authors/books/2",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"authors",
+						"books",
+						"2"
+					]
+				},
+				"description": "Pré-requisitos: Ter criado um Autor, obtido o identificado.\n\n1. fazer request abaixo:\n    \n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Authors/2](https://fakerestapi.azurewebsites.net/api/v1/Authors)\n    \n\nResultado Esperado:  \nResposta: Retornar lista de livros vinculado ao autor.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Retornou uma lista de autores com o mesmo livros  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/4d92f2ba-bbc7-4497-8c85-f9657fe8c097/aW1hZ2UucG5n\" alt=\"\" height=\"1079\" width=\"2559\">"
+			},
+			"response": []
+		},
+		{
+			"name": "retornar_livros_por_autor_não_encontrado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Authors/authors/books/999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Authors",
+						"authors",
+						"books",
+						"999"
+					]
+				},
+				"description": "Pré-requisitos: não há.\n\n1. fazer request abaixo:\n    \n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Authors/999](https://fakerestapi.azurewebsites.net/api/v1/Authors)\n    \n\nResultado Esperado:  \nResposta: Retornar lista vazia.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Retornou lista vazia  \nStatus: 200, 'OK'  \n\n<img src=\"https://content.pstmn.io/74dd0b1e-0ff7-4a51-a866-05afbd3e0cae/aW1hZ2UucG5n\" alt=\"\" height=\"1079\" width=\"2559\">"
+			},
+			"response": []
+		}
+	]
+}

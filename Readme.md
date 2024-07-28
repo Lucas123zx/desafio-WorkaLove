@@ -29,7 +29,7 @@ Este documento descreve os testes automatizados realizados para verificar a func
     │   ├── util/
     │     ├── baseSteps.js/
     │     ├── Livro.js/
-    ├── tests/
+    ├── e2e/
     │   ├── books.js
     ├── .env
     ├── .gitignore

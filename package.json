@@ -4,8 +4,8 @@
   "description": "Desafio WorkaLove",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 20000 tests/**/*.js",
-    "test-reporter": "mocha --reporter mochawesome --reporter-options reportDir=report --timeout 20000 tests/**/*.js"
+    "test": "mocha --timeout 20000 'e2e/**/*.js'",
+    "test-reporter": "mocha --reporter mochawesome --reporter-options reportDir=report --timeout 20000 'e2e/**/*.js'"
   },
   "keywords": [],
   "author": "",
