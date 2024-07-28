@@ -1,0 +1,1122 @@
+{
+	"info": {
+		"_postman_id": "7a4b4875-9a60-4b87-8c9d-702cd426218e",
+		"name": "books",
+		"description": "# Plano de Teste\n\n###### **Data : 26/07/2024**\n\n###### **Versão: V1**\n\n###### **Autor: Lucas**\n\nDesrição: Este documento descreve os testes Manuais, realizados para verificar a funcionalidade da API. O objetivo é garantir que os endpoints Livros funcionem conforme o esperado e que os dados sejam manipulados corretamente.\n\nCenários de Testes:  \nCT01 - Consultar todos os livros cadastrados com sucesso;  \nCT02 - Consultar um livro com sucesso;  \nCT03 - Consultar um livro não encontrado;  \nCT04 - Criar um livro com sucesso;  \nCT05 - Criar um livro sem informar titulo;  \nCT06 - Criar um livro sem informar descrição;  \nCT07 - Criar um livro sem informar quantidade de página;  \nCT08 - Criar um livro sem informar um resumo;  \nCT09 - Criar um livro sem data de publicação;  \nCT10 - Criar um livro sem identificador;  \nCT11 - Atualizar um livro com sucesso;  \nCT12 - Atualizar um livro sem informar titulo;  \nCT13 - Atualizar um livro sem informar descrição;  \nCT14 - Atualizar um livro sem informar quantidade de página;  \nCT15 - Atualizar um livro sem informar um resumo;  \nCT16 - Atualizar um livro sem data de publicação;  \nCT17 - Atualizar um livro sem identificador;  \nCT18 - Remover um livro com sucesso;  \nCT19 - Remover um livro não encontrado;",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35029765"
+	},
+	"item": [
+		{
+			"name": "consultar_todos_os_livros_com_sucesso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: Ter livros Cadastrados.\n\n1. fazer request abaixo:\n    \n\n- Método : GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books<br>](https://fakerestapi.azurewebsites.net//api/v1/Books)\n    \n\nResultado Esperado:  \nResposta: Retornar um json com lista de livros cadastro no sistema, e lista não deverá ser fazia.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Sistema retornou todos os livros cadastrado com sucesso.  \nStatus: 200 , OK';\n\n<img src=\"https://content.pstmn.io/5d841159-e1ff-44bf-a6eb-11d9d05ee1d5/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "consultar_livro_com_sucesso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"1"
+					]
+				},
+				"description": "Pré-requisito: Ter livros Cadastrados, possuindo o identiicado do livro {id}.\n\n1. fazer request abaixo:\n    \n\n- Método : GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Book/1](https://fakerestapi.azurewebsites.net//api/v1/Books)\n    \n\nResultado Esperado:  \nResposta: Retornar um json com detalhes do livro.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Sistema retornou os detalhes do livro.  \nStatus: 200 , 'OK'\n\n<img src=\"https://content.pstmn.io/ab3ae943-01ec-4f10-bdee-befe36cbdd86/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "consultar_livro_não_encontrado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/201",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"201"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Book/999](https://fakerestapi.azurewebsites.net//api/v1/Books)\n    \n\nResultado Esperado:  \nResposta: etornar um json informando que o livro não foi encontrado .  \nStatus: 404, 'Not Found'\n\nResultado Obtido:  \nResposta: Retornou um json informando que o livro não foi encontrado .  \nStatus: 404 , 'Not Found'\n\n<img src=\"https://content.pstmn.io/e41b823d-286b-483a-8e2b-bcc2f1679af8/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_com_sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 201,\r\n  \"title\": \"teste\",\r\n  \"description\": \"testete\",\r\n  \"pageCount\": 231,\r\n  \"excerpt\": \"tetetete\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 201, 'Created'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200 , 'OK'\n\n<img src=\"https://content.pstmn.io/cb452f99-ba30-4e81-b4fa-88cdb6f9e46a/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_com_id_vinculado_a_outro_livro_cadastrado_no_sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 1,\r\n  \"title\": \"teste\",\r\n  \"description\": \"testete\",\r\n  \"pageCount\": 231,\r\n  \"excerpt\": \"tetetete\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retornar um json contendo no body que id já está vinculado a outro livro.  \nStatus: 201, 'Created'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: Json contendo no body Not Found  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/cb452f99-ba30-4e81-b4fa-88cdb6f9e46a/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_titulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 202,\r\n  \"title\": \"\",\r\n  \"description\": \"testete\",\r\n  \"pageCount\": 231,\r\n  \"excerpt\": \"tetetete\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retorna um json informando que o Titulo é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body Not Found.  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/2399212c-2fd2-4bef-b1e7-bb6d9c113209/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_descrição",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 203,\r\n  \"title\": \"testesteste\",\r\n  \"description\": \"\",\r\n  \"pageCount\": 231,\r\n  \"excerpt\": \"tetetete\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 201, 'Created'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200, 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: Detalhes do livro cadastrado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/e2c192d4-7012-4511-9531-f2f6399c4055/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_paginas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 204,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 0,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retorna um json informando que o Titulo é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200, 'OK'  \n  \nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body Not Found.  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/b9ae8abb-7ee3-48b1-8128-46517e23fca0/aW1hZ2UucG5n\" width=\"2559\" height=\"1072\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_resumo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 205,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 201, 'Created'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200 , 'OK'  \n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: Detalhes do livro cadastrado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/9a51c1b8-4c36-4290-bb76-f9d7ef73fc56/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_data_publlicação",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/206`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 206,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Apresentar error.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nResposta: Apresnetou erro.  \nStatus: 400 , 'Bad Request'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body 'Not Found'.  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/0003d3dc-1dc0-488a-a196-5c151dfe56cd/aW1hZ2UucG5n\" width=\"2553\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "criar_livro_sem_identificador",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Identificador é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nRespota: Retornar os detalhes do livro cadastrado pelo usuário.  \nStatus: 200 , 'OK'  \n  \nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: um Json cotendo no body Not Found.  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/f867a1df-c63a-4306-a60c-e44c6f9acf9f/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_com_sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson O Loco meu\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Api retorna um json do livro com os detalhes atualizado.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Api retornou um json do livro com os detalhes atualizado.  \nStatus: 200 , 'OK'  \n  \nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/{id}](https://null)\n    \n\nResultado esperado:  \nResposta: Detalhes do livro atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/38c5f5e7-eb21-463b-a799-9596d8909e0f/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_com_id_vinculado_a_outro_livro_cadastrado_no_sistema",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson O Loco meu\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Api retorna um json contendo no body id viculado a outro livro.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nResposta: Api retornou um json do livro com os detalhes atualizado.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: json com os detalhes do livro desatualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/38c5f5e7-eb21-463b-a799-9596d8909e0f/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_titulo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Retorna um json informando que o Titulo é um campo obrigatório.  \nStatus: 400, 'Bad Reequest'\n\nResultado Obtido:  \nResposta: Api retorna um json do livro com os detalhes atualizado.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body os deltahes do livro não atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/6f34da66-d243-441b-814b-4c1f367d490e/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_descricao",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : POST, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Api retorna um json do livro com os detalhes atualizado.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Api retorna um json do livro com os detalhes atualizado.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: Detalhes do livro atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/0991b14a-6cbf-4694-afbf-08f3293ecd07/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_paginas",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"O Mar de monstros\",\r\n  \"pageCount\": 0,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: paginas é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nResposta: Api retorna um json do livro com os detalhes atualizado.  \nStatus: 200 , 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body os detalhes do livro não atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/076fa724-5193-4bb0-b6c0-267f19b1f272/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_resumo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"O Mar de monstros\",\r\n  \"pageCount\": 224,\r\n  \"excerpt\": \"\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: retornar um json com os dados do livro atualizado.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: retornar um json com os dados do livro atualizado.  \nStatus: 200, 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: Detalhes do livro atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/5702905f-b6d6-462e-87a6-293a22ea8e07/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_data_publicaçao",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"O Mar de monstros\",\r\n  \"pageCount\": 224,\r\n  \"excerpt\": \"Percy no labirindo com monstros\",\r\n  \"publishDate\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Apresentar error.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nResposta: Apresentar error.  \nStatus: 400, 'Bad Request'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body os dados do livro sem está atualizado.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/e784bd68-f08f-4ace-bf12-7a71b6328928/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_sem_identificado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/200",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"200"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta: Identificador é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nResultado Obtido:  \nResposta: Identificador é um campo obrigatório.  \nStatus: 400, 'Bad Request'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/200](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body os dados atualizado do livro.  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/0dcffc78-0dbd-4870-b731-2be53bc193b4/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar_livro_não_encontrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseJson = JSON.parse(responseBody);\r",
+							"const idProduct = responseJson.id\r",
+							"\r",
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/${idProduct}`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 200,\r\n  \"title\": \"Percy Jackson\",\r\n  \"description\": \"Cade o Raioooooo!, Percy no labirinto em busca do raio\",\r\n  \"pageCount\": 334,\r\n  \"excerpt\": \"Jackson não sabe o que está acontecendo\",\r\n  \"publishDate\": \"2024-07-24T20:42:31.469Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"999"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : PUT, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/999](https://fakerestapi.azurewebsites.net/api/v)\n    \n- Body\n    \n\nResultado Esperado:  \nResposta : Json Not Found.  \nStatus: 404, 'Not Found'\n\nResultado Obtido:  \nResposta: Retornou um json com os dados do livro atualizado  \nStatus: 200, 'OK'\n\n<img src=\"https://content.pstmn.io/39445828-e3a1-4b9c-bc35-383b83b1a7af/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "remover_livro_sucesso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/1`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"1"
+					]
+				},
+				"description": "Pré-requisito: ter um livro cadastrado e possuir o identificador.\n\n1. fazer request abaixo:\n    \n\n- Método : DELETE, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/1<br>](https://fakerestapi.azurewebsites.net/api/v)\n    \n\nResultado Esperado:  \nResposta : Livro removido com sucesso.  \nStatus: 200, 'OK'\n\nResultado Obtido:  \nResposta: Vazia  \nStatus: 200, 'OK'\n\nPós-requisito: consultar se o livro foi cadastrado.\n\n- Método: GET, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/1](https://null)\n    \n\nResultado esperado:  \nResposta: um json contendo no body 'Not Found'.  \nStatus: 404, 'Not Found'\n\n<img src=\"https://content.pstmn.io/a99bcd7e-45e5-4c2c-bf1f-9dd1321e29a1/aW1hZ2UucG5n\" width=\"2559\" height=\"1079\">"
+			},
+			"response": []
+		},
+		{
+			"name": "remover_livro_não_encontrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const getLivro = {\r",
+							"    url: `${pm.globals.get('baseUrl')}/api/v1/Books/999`,\r",
+							"    method: 'GET',\r",
+							"    header: {\r",
+							"        'Content-Type': 'application/json',\r",
+							"    }\r",
+							"};\r",
+							"\r",
+							"pm.sendRequest(getLivro, (error, response) => {\r",
+							"    console.log(error ? error : response.json());\r",
+							"\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"packages": {},
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/v1/Books/999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"Books",
+						"999"
+					]
+				},
+				"description": "Pré-requisito: não possui.\n\n1. fazer request abaixo:\n    \n\n- Método : DELETE, Url: [https://fakerestapi.azurewebsites.net/api/v1/Books/999<br>](https://fakerestapi.azurewebsites.net/api/v)\n    \n\nResultado Esperado:  \nResposta : Json Not Found.  \nStatus: 404, 'Not Found'\n\nResultado Obtido:  \nResposta: Retornou um json com os dados do livro atualizado  \nStatus: 200, 'OK'"
+			},
+			"response": []
+		}
+	]
+}
