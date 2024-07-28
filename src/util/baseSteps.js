@@ -30,6 +30,7 @@ class BaseSteps {
       .get(url + `/${id}`);
 
     let resposta = { json: consultar.json, statusCode: consultar.statusCode, statusMessage: consultar.statusMessage };
+    
     return resposta;
   };
 

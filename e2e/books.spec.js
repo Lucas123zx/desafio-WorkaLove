@@ -19,7 +19,7 @@ describe("Recurso Books", async () => {
     "excerpt": meuLivro.excerpt,
     "publishDate": meuLivro.publishDate
   };
-  it('Consulta todos os livros com sucesso', async () => {
+  it('Consultar todos os livros com sucesso', async () => {
     await BaseSteps.cadastrar(urlBook, livro);
 
     let consulta = await spec().get(urlBook);
@@ -27,24 +27,24 @@ describe("Recurso Books", async () => {
 
     BaseSteps.respostaOKEArrayNaoVazio(resposta);
   });
-  it('Consulta um livro com sucesso', async () => {
+  it('Consultar um livro com sucesso', async () => {
     resposta = await BaseSteps.consultar(urlBook, 3);
     expect(resposta.statusCode).to.be.eql(200);
     expect(resposta.statusMessage).to.be.eql('OK');
     expect(resposta.json).not.be.empty;
   });
-  it('Consulta um livro não encontrado', async () => {
+  it('Consultar um livro não encontrado', async () => {
     resposta = await BaseSteps.consultar(urlBook, 999);
     BaseSteps.respostaNotFound(resposta);
   });
-  it('Cria um livro com sucesso', async () => {
+  it('Criar um livro com sucesso', async () => {
     resposta = await BaseSteps.cadastrar(urlBook, livro);
     BaseSteps.respostaOK(resposta, livro);
 
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaOK(resposta, livro);
   });
-  it('Criar um livro informando identificador vinculado a outro livro cadastrado no sistema;', async () => {
+  it('Criar um livro informando identificador vinculado a outro livro cadastrado no sistema', async () => {
     livro.id = 1;
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -53,7 +53,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaNotFound(resposta);
   });
-  it('Cria um livro sem informar titulo', async () => {
+  it('Criar um livro sem informar titulo', async () => {
     livro.title = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -62,7 +62,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaNotFound(resposta);
   });
-  it('Cria um livro sem informar descrição', async () => {
+  it('Criar um livro sem informar descrição', async () => {
     livro.description = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -72,7 +72,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaOK(resposta, livro);
   });
-  it('Cria um livro sem informar quantidade de páginas', async () => {
+  it('Criar um livro sem informar quantidade de páginas', async () => {
     livro.pageCount = 0;
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -82,7 +82,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id);
     BaseSteps.respostaNotFound(resposta);
   });
-  it('Cria um livro sem informar um resumo', async () => {
+  it('Criar um livro sem informar um resumo', async () => {
     livro.excerpt = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -92,7 +92,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaOK(resposta, livro);
   });
-  it('Cria um livro sem informar data de publicação', async () => {
+  it('Criar um livro sem informar data de publicação', async () => {
     livro.publishDate = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -101,7 +101,7 @@ describe("Recurso Books", async () => {
     resposta = await BaseSteps.consultar(urlBook, livro.id);
     BaseSteps.respostaNotFound(resposta);
   });
-  it('Cria um livro sem informar identificador', async () => {
+  it('Criar um livro sem informar identificador', async () => {
     livro.id = 0;
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
@@ -198,7 +198,7 @@ describe("Recurso Books", async () => {
     expect(resposta.statusMessage).to.be.eql('OK');
     expect(resposta.json).not.be.eql(livro);
   });
-  it('Atualizar um livro sem identificador;', async () => {
+  it('Atualizar um livro sem identificador', async () => {
     livro.id = 200;
 
     let atualizar = await spec()
@@ -221,7 +221,7 @@ describe("Recurso Books", async () => {
     expect(resposta.statusMessage).to.be.eql('OK');
     expect(resposta.json).not.be.eql(livro);
   });
-  it('Atualizar um livro não encontrado;', async () => {
+  it('Atualizar um livro não encontrado', async () => {
     livro.id = 202;
 
     resposta = await BaseSteps.atualizar(urlBook, livro);
