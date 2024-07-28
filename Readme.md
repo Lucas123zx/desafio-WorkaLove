@@ -13,11 +13,12 @@ Este documento descreve os testes automatizados realizados para verificar a func
 ---
 
 ### Pré requisitos & Instalação de dependências: 
- 1. [Node.Js](https://nodejs.org/pt/download/package-manager)
- 2. IDE
- 3. Clonar projeto `git clone https://github.com/Lucas123zx/desafio-WorkaLove.git`
- 4. Executar o comando `npm install` no terminal.
- 5. (Opcional) Importe os arquivos da pasta collections para o postman para visualizar o plano de teste.
+ 1. [Node.Js](https://nodejs.org/pt/download/package-manager);
+ 2. IDE;
+ 3. Clonar projeto `git clone https://github.com/Lucas123zx/desafio-WorkaLove.git`;
+ 4. Abra o projeto na sua ide;
+ 5. Executar o comando `npm install` no terminal;
+ 6. (Opcional) Importe os arquivos da pasta collections para o postman para visualizar o plano de teste.
 
 ---
 ### Estrutura dos Arquivos
