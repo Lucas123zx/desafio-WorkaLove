@@ -45,7 +45,7 @@ class Livro {
     const descricaoLivro = descricoes[livroAleatorio];
     const resumoLivro = resumos[livroAleatorio];
     const totalPaginasLivro = Math.floor(Math.random() * 200) + 100;
-    const identificador = Math.floor(Math.random() * 1000) + 201;
+    const identificador = Math.floor(Math.random() * 1000) + 301;
     const dataPublicacaoLivro = new Date().toISOString();
 
     return new Livro(identificador, tituloLivro, descricaoLivro, totalPaginasLivro, resumoLivro, dataPublicacaoLivro);

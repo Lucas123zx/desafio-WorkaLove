@@ -42,8 +42,11 @@ Este documento descreve os testes automatizados realizados para verificar a func
     │   ├── authors.spec.js
     ├── .env
     ├── .gitignore
+    ├── .package-lock.json
     ├── .package.json
-    └── README.md
+    ├── README.md
+    ├── Relatorio de Bugs.html
+    └── Relatorio de Teste - Manuais.html
 ---
 
 ### Execuções: 
@@ -51,6 +54,7 @@ Este documento descreve os testes automatizados realizados para verificar a func
   - após instalados as dependencias.
   - Execute o comando no terminal de sua ide `npm run test`  executa os testes.
   - Ou execute o comando no terminal de sua ide `npm run test-reporter` executa os teste e gera relatório no final dos testes.
+  - Relatório Presente na pasta report/mochawesome.html
 
 ---
 
@@ -59,7 +63,7 @@ Este documento descreve os testes automatizados realizados para verificar a func
     - Não possui respostas esperadas para fluxos de exceções
     - Alguns recurso são confusos - Exemplo Authors
     - Falta de descrição nos recursos da api
-    - Ausencia de Regra de negócios
+    - Ausencia de Regras de negócio
 2. API Restfull: Pontos Fortes
     - Possui Métodos Claros:
       - Get: Recupera
@@ -68,8 +72,4 @@ Este documento descreve os testes automatizados realizados para verificar a func
       - Post: Cria
 3. API: Pontos Fracos
       - Resposta são estáticas
-4. Bugs: 
-    1. Consultar livro após cadastro com sucesso, sistema não exibe o livro.
-    2. Consultar autor não encontrado é retornar uma lista vazia.
-    3. Cadastrar Livro com a data de publicação 2024-07-28T22:29:03.500Z sistema registar sem os zeros nos millesimos.
-  
+      - Algumas resposta fora do padrão Exemplo ***POST: Status 201 , 'Created'***
