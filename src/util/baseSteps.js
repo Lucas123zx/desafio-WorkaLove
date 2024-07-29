@@ -45,6 +45,12 @@ class BaseSteps {
     expect(resposta.json).to.be.eql(body);
   };
 
+  static respostaCreated(resposta, body) {
+    expect(resposta.statusCode).to.be.eql(201);
+    expect(resposta.statusMessage).to.be.eql('Created');
+    expect(resposta.json).to.be.eql(body);
+  };
+
   static respostaOKEArrayNaoVazio(resposta) {
     let totalItems = resposta.json.length;
 

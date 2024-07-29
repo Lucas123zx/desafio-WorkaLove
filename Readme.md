@@ -68,8 +68,3 @@ Este documento descreve os testes automatizados realizados para verificar a func
       - Post: Cria
 3. API: Pontos Fracos
       - Resposta são estáticas
-4. Bugs: 
-    1. Consultar livro após cadastro com sucesso, sistema não exibe o livro.
-    2. Consultar autor não encontrado é retornar uma lista vazia.
-    3. Cadastrar Livro com a data de publicação 2024-07-28T22:29:03.500Z sistema registar sem os zeros nos millesimos.
-  

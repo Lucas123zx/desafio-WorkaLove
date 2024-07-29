@@ -39,7 +39,7 @@ describe("Recurso Books", async () => {
   });
   it('Criar um livro com sucesso', async () => {
     resposta = await BaseSteps.cadastrar(urlBook, livro);
-    BaseSteps.respostaOK(resposta, livro);
+    BaseSteps.respostaCreated(resposta, livro);
 
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
     BaseSteps.respostaOK(resposta, livro);
@@ -66,7 +66,7 @@ describe("Recurso Books", async () => {
     livro.description = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
-    BaseSteps.respostaOK(resposta, livro);
+    BaseSteps.respostaCreated(resposta, livro);
     expect(resposta.json.description).to.be.empty;
 
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
@@ -86,7 +86,7 @@ describe("Recurso Books", async () => {
     livro.excerpt = "";
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
-    BaseSteps.respostaOK(resposta, livro);
+    BaseSteps.respostaCreated(resposta, livro);
     expect(resposta.json.excerpt).to.be.empty;
 
     resposta = await BaseSteps.consultar(urlBook, resposta.json.id)
@@ -94,6 +94,7 @@ describe("Recurso Books", async () => {
   });
   it('Criar um livro sem informar data de publicação', async () => {
     livro.publishDate = "";
+    livro.id = 201;
 
     resposta = await BaseSteps.cadastrar(urlBook, livro);
     BaseSteps.respostaBadRequest(resposta, 'One or more validation errors occurred.');

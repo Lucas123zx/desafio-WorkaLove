@@ -1,0 +1,679 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Relatório de Testes</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="abc41a38-f06e-4fd9-9e22-d81b967ec604" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🧪</span></div><h1 class="page-title">Relatório de Testes</h1><p class="page-description"></p></header><div class="page-body"><p id="0476a946-1929-444a-b600-241a5ded9c21" class="">Objetivo deste é relatório e apresentar os resultados dos teste realizado no back-end da api <strong>FakeRESTApi.Web na versão 1.  Os teste realizado alguns possuem pré-requisitos ou pós-requisitos, além de validar o objeto de retorno é validado se á api cumpri aquilo que foi proposta a fazer de acordo com as orientações passada no contexto:</strong></p><p id="ebc4d556-f30f-4077-9429-db753e5c9475" class="">
+</p><ul id="f443002e-6aae-437b-b766-43a77d524615" class="bulleted-list"><li style="list-style-type:disc">Deve ser possível listar, incluir, alterar e excluir livros e autores.</li></ul><ul id="ced9d922-e134-4fe9-bcec-6558cc8354d5" class="bulleted-list"><li style="list-style-type:disc">Deve ser possível buscar livros escritos por determinado autor de acordo com seu id.</li></ul><div id="2fe1f836-e836-4a5b-be45-34849294e67b" class="collection-content"><h4 class="collection-title">Task Analysis</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Tasks</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Step-by-step</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Pós-Requisitos</th><th><span class="icon property-icon"><img src="https://www.notion.so/icons/user-circle-filled_gray.svg" style="width:14px;height:14px"/></span>Lucas</th></tr></thead><tbody><tr id="ece40ea6-a59d-44bd-9e5a-0bdfc5d147d9"><td class="cell-title"><a href="https://www.notion.so/Consultar-todos-os-livros-com-sucesso-ece40ea6a59d44bd9e5a0bdfc5d147d9?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar todos os livros com sucesso</a></td><td class="cell-\Q;&lt;">Pré-requisito: Ter livros Cadastrados.<br/><br/>1. fazer request abaixo:<br/>• Método : GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net//api/v1/Books">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/><br/>Resultado Esperado:<br/>Resposta: Retornar um json com lista de livros cadastro no sistema, e lista não deverá ser fazia.<br/>Status: 200, &#x27;OK&#x27;<br/><br/>Resultado Obtido:<br/>Resposta: Sistema retornou todos os livros cadastrado com sucesso.<br/>Status: 200 , ‘OK&#x27;;<br/><br/></td><td class="cell-`k^M">Não possui.</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="2889f0c9-842e-4fb5-83d1-9027f945cb02"><td class="cell-title"><a href="https://www.notion.so/Consultar-um-livro-com-sucesso-2889f0c9842e4fb583d19027f945cb02?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar um livro com sucesso</a></td><td class="cell-\Q;&lt;">Pré-requisito: Ter livros Cadastrados, possuindo o identiicado do livro {id}.<br/>1. fazer request abaixo:<br/>• Método : GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net//api/v1/Books">https://fakerestapi.azurewebsites.net/api/v1/Book/1</a><br/><br/>Resultado Esperado:<br/>Resposta: Retornar um json com detalhes do livro.<br/>Status: 200, &#x27;OK&#x27;<br/><br/>Resultado Obtido:<br/>Resposta: Sistema retornou os detalhes do livro.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Não possui.</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="a09840dc-ace6-40e0-9df2-159160d16306"><td class="cell-title"><a href="https://www.notion.so/Consultar-um-livro-n-o-encontrado-a09840dcace640e09df2159160d16306?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar um livro não encontrado</a></td><td class="cell-\Q;&lt;">Pré-requisito: não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net//api/v1/Books">https://fakerestapi.azurewebsites.net/api/v1/Book/999</a><br/><br/>Resultado Esperado:<br/>Resposta: retornar um json informando que o livro não foi encontrado .<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/>Resultado Obtido:<br/>Resposta: Retornou um json informando que o livro não foi encontrado .<br/>Status: 404 , &#x27;Not Found’<br/></td><td class="cell-`k^M">Não possui.</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="ce5f629b-b48a-4da8-84b5-cef9027ab687"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-com-sucesso-ce5f629bb48a4da884b5cef9027ab687?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro com sucesso</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body: {<br/>&quot;id&quot;: 201,<br/>&quot;title&quot;: &quot;teste&quot;,<br/>&quot;description&quot;: &quot;testete&quot;,<br/>&quot;pageCount&quot;: 231,<br/>&quot;excerpt&quot;: &quot;tetetete&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 201, &#x27;Created&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200 , &#x27;OK&#x27;  <br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1 .Fazer request abaixo:<br/><br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro cadastrado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: json contendo Not Found.<br/>Status: 404, &#x27;Not  Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="1e9bd324-af24-492a-ac95-befa45e7a283"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-informando-identificador-vinculado-a-outro-livro-cadastrado-no-sistema-1e9bd324af24492aac95befa45e7a283?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro informando identificador vinculado a outro livro cadastrado no sistema</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body <br/>{<br/>&quot;id&quot;: 1,<br/>&quot;title&quot;: &quot;teste&quot;,<br/>&quot;description&quot;: &quot;testete&quot;,<br/>&quot;pageCount&quot;: 231,<br/>&quot;excerpt&quot;: &quot;tetetete&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar um json contendo no body que id já está vinculado a outro livro.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. fazer request abaixo:<br/><br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="7779f342-a920-4a79-a8c0-c96ab69d83d9"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-titulo-7779f342a9204a79a8c0c96ab69d83d9?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar titulo</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito: </strong>não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 202,<br/>&quot;title&quot;: &quot;&quot;,<br/>&quot;description&quot;: &quot;testete&quot;,<br/>&quot;pageCount&quot;: 231,<br/>&quot;excerpt&quot;: &quot;tetetete&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retorna um json informando que o Titulo é um campo obrigatório.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200 , &#x27;OK&#x27;<br/><br/><br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. Fazer request abaixo:<br/><br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="310a33c1-7b31-4cdf-9be3-4f514433f942"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-descri-o-310a33c17b314cdf9be34f514433f942?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar descrição</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 203,<br/>&quot;title&quot;: &quot;testesteste&quot;,<br/>&quot;description&quot;: &quot;&quot;,<br/>&quot;pageCount&quot;: 231,<br/>&quot;excerpt&quot;: &quot;tetetete&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:</strong><br/>Resposta: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 201, &#x27;Created&#x27;<br/><br/><br/><strong>Resultado Obtido:</strong><br/>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. Fazer request abaixo:<br/><br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro cadastrado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="9986bd4b-2cbd-48d7-b722-095987059bb4"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-quantidade-de-p-ginas-9986bd4b2cbd48d7b722095987059bb4?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar quantidade de páginas</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body: <br/>{<br/>&quot;id&quot;: 204,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 0,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retorna um json informando que o Titulo é um campo obrigatório.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200, &#x27;OK&#x27;  <br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. Fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="de551cae-c03f-46a3-ae38-fce4883077c6"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-um-resumo-de551caec03f46a3ae38fce4883077c6?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar um resumo</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito: </strong>não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 205,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 201, &#x27;Created&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200 , &#x27;OK&#x27;  <br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. Faze request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro cadastrado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="4a90b632-c9b1-4398-a485-7c5904763be0"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-data-de-publica-o-4a90b632c9b14398a4857c5904763be0?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar data de publicação</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body: <br/>{<br/>&quot;id&quot;: 206,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Apresentar error.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Apresnetou erro.<br/>Status: 400 , &#x27;Bad Request&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>1. Fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body &#x27;Not Found&#x27;.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="5c9e9390-ce76-4d01-9a14-24c8d1aa138a"><td class="cell-title"><a href="https://www.notion.so/Criar-um-livro-sem-informar-identificador-5c9e9390ce764d019a1424c8d1aa138a?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Criar um livro sem informar identificador</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : POST, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 201,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Identificador é um campo obrigatório.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Respota: Retornar os detalhes do livro cadastrado pelo usuário.<br/>Status: 200 , &#x27;OK&#x27;  <br/></td><td class="cell-`k^M">Consultar se o livro foi cadastrado.<br/><br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um Json contendo no body Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="13251034-23bc-403f-8356-0f9680d47876"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-com-sucesso-1325103423bc403f83560f9680d47876?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro com sucesso</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/> {<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson O Loco meu&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Api retorna um json do livro com os detalhes atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Api retornou um json do livro com os detalhes atualizado.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/{id}</a><br/><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Json contendo no body Not Found<br/>Status: 404, &#x27;Not Found&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="64836912-723b-43f4-954b-0cc635c7ff24"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-informando-identificador-vinculado-a-outro-livro-cadastrado-no-sistema-64836912723b43f4954b0cc635c7ff24?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro informando identificador vinculado a outro livro cadastrado no sistema</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 1,<br/>&quot;title&quot;: &quot;Percy Jackson O Loco meu&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Api retorna um json contendo no body id viculado a outro livro.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Api retornou um json do livro com os detalhes atualizado.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1. Fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta:  json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="71b8a8cc-75fe-46f8-b65f-ccaa3f5bb8ef"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-informar-titulo-71b8a8cc75fe46f8b65fccaa3f5bb8ef?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem informar titulo</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retorna um json informando que o Titulo é um campo obrigatório.<br/>Status: 400, &#x27;Bad Reequest&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Api retorna um json do livro com os detalhes atualizado.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body os deltahes do livro não atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta:  json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="71effe1f-66a5-40e1-be00-72da5e4c2866"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-informar-descri-o-71effe1f66a540e1be0072da5e4c2866?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem informar descrição</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Api retorna um json do livro com os detalhes atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Api retorna um json do livro com os detalhes atualizado.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta:  json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="16c36f9f-ead6-463c-b34f-db5b558fc906"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-informar-quantidades-de-p-ginas-16c36f9fead6463cb34fdb5b558fc906?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem informar quantidades de páginas</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito: </strong>ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;O Mar de monstros&quot;,<br/>&quot;pageCount&quot;: 0,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: paginas é um campo obrigatório.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Api retorna um json do livro com os detalhes atualizado.<br/>Status: 200 , &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1.fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body os detalhes do livro não atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta:  json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="6cb0bd7c-cfd6-464f-82c0-6d8caebfb7bf"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-informar-um-resumo-6cb0bd7ccfd6464f82c06d8caebfb7bf?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem informar um resumo</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;O Mar de monstros&quot;,<br/>&quot;pageCount&quot;: 224,<br/>&quot;excerpt&quot;: &quot;&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: retornar um json com os dados do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: retornar um json com os dados do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1.fazer request abaixo: <br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: Detalhes do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta:  json com os detalhes do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="467797d7-151e-440f-b226-175e8cefc731"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-data-de-publica-o-467797d7151e440fb226175e8cefc731?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem data de publicação</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito:</strong> ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;O Mar de monstros&quot;,<br/>&quot;pageCount&quot;: 224,<br/>&quot;excerpt&quot;: &quot;Percy no labirindo com monstros&quot;,<br/>&quot;publishDate&quot;: &quot;&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Apresentar error.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Apresentar error.<br/>Status: 400, &#x27;Bad Request&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1.fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body os dados do livro sem está atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: um json contendo no body os dados do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="ef6a8379-ba90-4255-9e00-d9bb16e50555"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-sem-identificador-ef6a8379ba9042559e00d9bb16e50555?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro sem identificador</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 0,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Identificador é um campo obrigatório.<br/>Status: 400, &#x27;Bad Request&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: sistema apresentou o json do livro atualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi atualizado.<br/><br/>1.fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/200</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body os dados do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: um json contendo no body os dados do livro desatualizado.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="a5e9a857-12f4-4802-8166-9d7ec470b1e4"><td class="cell-title"><a href="https://www.notion.so/Atualizar-um-livro-n-o-encontrado-a5e9a85712f4480281669d7ec470b1e4?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Atualizar um livro não encontrado</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito: </strong>não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : PUT, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/999</a><br/>• Body:<br/>{<br/>&quot;id&quot;: 200,<br/>&quot;title&quot;: &quot;Percy Jackson&quot;,<br/>&quot;description&quot;: &quot;Cade o Raioooooo!, Percy no labirinto em busca do raio&quot;,<br/>&quot;pageCount&quot;: 334,<br/>&quot;excerpt&quot;: &quot;Jackson não sabe o que está acontecendo&quot;,<br/>&quot;publishDate&quot;: &quot;2024-07-24T20:42:31.469Z&quot;<br/>}<br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta : Json Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Retornou um json com os dados do livro atualizado<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Não possui</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="78f62efd-2685-4cbd-b2fb-4744ae5da431"><td class="cell-title"><a href="https://www.notion.so/Remover-um-livro-com-sucesso-78f62efd26854cbdb2fb4744ae5da431?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Remover um livro com sucesso</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisito</strong>: ter um livro cadastrado e possuir o identificador.<br/><br/>1. fazer request abaixo:<br/>• Método : DELETE, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/1<br/><br/></a><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta : Livro removido com sucesso.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Vazia<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">Consultar se o livro foi removido.<br/><br/>1.fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://null/">https://fakerestapi.azurewebsites.net/api/v1/Books/1</a><br/><br/><br/><strong>Resultado esperado:<br/><br/></strong>Resposta: um json contendo no body &#x27;Not Found&#x27;.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: um json contendo os dados do livro.<br/>Status: 200,  &#x27;OK’<br/></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="0ed11b4a-7b99-41cf-bf26-7680af261b59"><td class="cell-title"><a href="https://www.notion.so/Remover-um-livro-n-o-encontrado-0ed11b4a7b9941cfbf267680af261b59?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Remover um livro não encontrado</a></td><td class="cell-\Q;&lt;">Pré-requisito: não possui.<br/><br/>1. fazer request abaixo:<br/>• Método : DELETE, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v">https://fakerestapi.azurewebsites.net/api/v1/Books/999<br/><br/></a><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta : Json Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Retornou um json vazio<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">não possui.</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="1a05901c-241f-4f8d-a016-6a6bbc9d1a6a"><td class="cell-title"><a href="https://www.notion.so/Consultar-lista-de-autores-com-sucesso-1a05901c241f4f8da0166a6bbc9d1a6a?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar lista de autores com sucesso</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisitos:</strong> Ter criado um Autor.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v1/Authors">https://fakerestapi.azurewebsites.net/api/v1/Authors</a><br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar todos os autores cadastrados.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Retornou todos os autores cadastrados.<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">não possui</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-green">Pass</span></td></tr><tr id="de920787-092e-4a1f-bad3-918662f69c57"><td class="cell-title"><a href="https://www.notion.so/Consultar-livros-por-autor-com-sucesso-de920787092e4a1fbad3918662f69c57?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar livros por autor com sucesso</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisitos: </strong>Ter criado um Autor, e viculado a um livro cadastrado no sistema.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v1/Authors">https://fakerestapi.azurewebsites.net/api/v1/Authors/2</a><br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar lista de livros vinculado ao autor.<br/>Status: 200, &#x27;OK&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Retornou uma lista de autores com o mesmo livros<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M">não possui</td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr><tr id="259cd1ba-dedb-4201-aee2-0918a3a6690c"><td class="cell-title"><a href="https://www.notion.so/Consultar-livros-por-autor-n-o-encontrado-259cd1badedb4201aee20918a3a6690c?pvs=21"><img class="icon" src="https://www.notion.so/icons/chemistry_green.svg"/>Consultar livros por autor não encontrado</a></td><td class="cell-\Q;&lt;"><strong>Pré-requisitos: </strong>não possui.<br/><br/>1. fazer request abaixo:<br/>• Método: GET, Url: <br/><a href="https://fakerestapi.azurewebsites.net/api/v1/Authors">https://fakerestapi.azurewebsites.net/api/v1/Authors/999</a><br/><br/><br/><strong>Resultado Esperado:<br/><br/></strong>Resposta: Retornar um json contendo Not Found.<br/>Status: 404, &#x27;Not Found&#x27;<br/><br/><br/><strong>Resultado Obtido:<br/><br/></strong>Resposta: Retornou lista vazia<br/>Status: 200, &#x27;OK&#x27;<br/></td><td class="cell-`k^M"></td><td class="cell-LZq&gt;"><span class="selected-value select-value-color-red">Fail</span></td></tr></tbody></table><br/><br/></div><p id="eb9c148c-cd8c-4741-9d55-c0c0f9b4fb88" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
