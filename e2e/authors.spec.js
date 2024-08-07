@@ -1,17 +1,18 @@
-const { spec } = require('pactum');
-const { expect } = require('chai');
-require('dotenv').config();
-const BaseSteps = require('../src/util/baseSteps');
-const Autor = require('../src/util/autor');
+import { spec } from 'pactum'; 
+import { expect } from "chai"; 
+import 'dotenv/config';
+import { Autor } from '../src/util/autor.js';
+import { BaseSteps } from '../src/util/baseSteps.js';
 
-  describe("Recurso Authors" , async () => {
+describe("Recurso Authors", async () => {
     
   const urlAuthor = process.env.BASE_URL + "/api/v1/Authors";
-  const author = Autor.criarAutor();
-
+  
+  let author;
   let resposta;
   
   it('Consultar lista de autores com sucesso', async() => {
+    author = Autor.criarAutor();
     await BaseSteps.cadastrar(urlAuthor, author);
 
     let consulta = await spec().get(urlAuthor);
@@ -20,7 +21,9 @@ const Autor = require('../src/util/autor');
 
     BaseSteps.respostaOKEArrayNaoVazio(resposta);
   });
+
   it('Consultar livros por autor com sucesso', async() => {
+    author = Autor.criarAutor();
     await BaseSteps.cadastrar(urlAuthor, author);
 
     resposta = await BaseSteps.consultar(`${urlAuthor}/authors/books`, author.idBook);
@@ -28,6 +31,7 @@ const Autor = require('../src/util/autor');
     BaseSteps.respostaOKEArrayNaoVazio(resposta);
     expect(resposta.json).to.be.contain(author);
   });
+  
   it('Consultar livros por autor não encontrado', async() => {
 
     resposta = await BaseSteps.consultar(`${urlAuthor}/authors/books`, 999);

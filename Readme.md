@@ -9,6 +9,7 @@ Este documento descreve os testes automatizados realizados para verificar a func
   -  [Chai](https://www.chaijs.com/)
   -  [Mochawesome](https://www.npmjs.com/package/mochawesome)
   -  [Postman](https://www.postman.com/)
+  -  [Babel](https://babeljs.io/docs/usage)
 
 ---
 
@@ -72,4 +73,4 @@ Este documento descreve os testes automatizados realizados para verificar a func
       - Post: Cria
 3. API: Pontos Fracos
       - Resposta são estáticas
-      - Algumas resposta fora do padrão Exemplo ***POST: Status 201 , 'Created'***
+      - Algumas resposta fora do padrão Exemplo **POST: STATUS 200, 'OK'**,  padrão correto: **POST: Status 201 , 'Created'**

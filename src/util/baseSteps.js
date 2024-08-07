@@ -1,7 +1,7 @@
-const { expect } = require('chai');
-const { spec } = require('pactum');
+import { spec } from 'pactum'; 
+import { expect } from "chai"; 
 
-class BaseSteps {
+export class BaseSteps {
 
   static async cadastrar(url, body) {
     let cadastrar = await spec()
@@ -73,4 +73,3 @@ class BaseSteps {
   };
 }
 
-module.exports = BaseSteps;

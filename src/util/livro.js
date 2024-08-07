@@ -1,5 +1,6 @@
-class Livro {
+export class Livro {
 
+    //// Representa o Livro
   constructor(id, titulo, descricao, quantidadePaginas, resumo, dataPublicacao) {
     this.id = id;
     this.title = titulo;
@@ -9,7 +10,6 @@ class Livro {
     this.publishDate = dataPublicacao;
   }
 
-  //// Representa o Livro
 
   static criarLivro() {
 
@@ -50,8 +50,6 @@ class Livro {
 
     return new Livro(identificador, tituloLivro, descricaoLivro, totalPaginasLivro, resumoLivro, dataPublicacaoLivro);
 
-    //// retornar a classe livro dados de um livro
+    //// retornar a classe livro com dados de um livro
   }
 }
-
-module.exports = Livro;
