@@ -1,13 +1,12 @@
-class Autor {
+export class Autor {
 
+  //// Representa o autor vinculado ao um livro
   constructor(id, idBook, nome, sobreNome) {
     this.id = id;
     this.idBook = idBook;
     this.firstName = nome;
     this.lastName = sobreNome;
   }
-
-  //// Representa o Livro
 
   static criarAutor() {
 
@@ -27,8 +26,6 @@ class Autor {
     const identificador = Math.floor(Math.random() * 1000) + 201;
     return new Autor(identificador, idLivro, nome, sobreNome);
 
-    //// retornar a classe Autor dados do Autor
+    //// retornar a classe Autor com dados do Autor
   }
 }
-
-module.exports = Autor;
