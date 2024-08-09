@@ -42,6 +42,7 @@ Este documento descreve os testes automatizados realizados para verificar a func
     │   ├── books.spec.js
     │   ├── authors.spec.js
     ├── .env
+    ├── .babelrc
     ├── .gitignore
     ├── .package-lock.json
     ├── .package.json
